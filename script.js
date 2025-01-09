@@ -63,19 +63,34 @@ async function setBackgroundImage() {
     }
 }
 
+function getTimeBasedGreeting() {
+    const hour = new Date().getHours();
+    
+    if (hour < 12) {
+        return 'Good morning';
+    } else if (hour < 17) {
+        return 'Good afternoon';
+    } else if (hour < 22) {
+        return 'Good evening';
+    } else {
+        return 'Good night';
+    }
+}
+
 function greetUser() {
     const userName = localStorage.getItem('userName');
     const greetingElement = document.getElementById('greeting');
+    const timeGreeting = getTimeBasedGreeting();
 
     if (userName) {
-        greetingElement.textContent = `Welcome back, ${userName}!`;
+        greetingElement.textContent = `${timeGreeting}, ${userName}!`;
     } else {
         const newName = prompt('Please enter your name:');
         if (newName) {
             localStorage.setItem('userName', newName);
-            greetingElement.textContent = `Hello, ${newName}!`;
+            greetingElement.textContent = `${timeGreeting}, ${newName}!`;
         } else {
-            greetingElement.textContent = 'Hello, anonymous!';
+            greetingElement.textContent = `${timeGreeting}, anonymous!`;
         }
     }
 }
