@@ -4,11 +4,11 @@ if (!UNSPLASH_ACCESS_KEY) {
     console.error('Please set up config.js with your UNSPLASH_ACCESS_KEY');
 }
 
-const SIX_HOURS_MS = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+const SIX_HOURS_MS = 1 * 60 * 60 * 1000; // 6 hours in milliseconds
 
 async function getRandomImage() {
     try {
-        const response = await fetch('https://api.unsplash.com/photos/random?orientation=landscape', {
+        const response = await fetch('https://api.unsplash.com/photos/random?orientation=landscape&query=nature&topics=nature,landscape', {
             headers: {
                 'Authorization': `Client-ID ${UNSPLASH_ACCESS_KEY}`
             }
